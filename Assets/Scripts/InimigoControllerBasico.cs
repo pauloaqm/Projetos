@@ -5,7 +5,6 @@ public class InimigoControllerBasico : MonoBehaviour {
 	
 	private float knockback = 300f;
 	private float danoBasico = 50f;
-	private int teste;
 
 	//Se a collision for com o player, ele checa a direçao relativa do player ao inimigo. Se a collision veio por cima do inimigo, 
 	//ele sera destruido e o player ganha um impuslo. Se foi pelos lados ou por baixo, o player leva dano e um knockback na direçao oposta
