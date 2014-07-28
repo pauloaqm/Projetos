@@ -1,0 +1,195 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class KitControllerBasico : MonoBehaviour {
+	/****************************************************************
+	 * 						DECLARACOES INICIAIS
+	 * *************************************************************/
+
+	//para movimento horizontal
+	public float maxSpeed = 10f;
+	bool olhandoDireita = true;
+
+	//para correr horizontalmente enquanto segura um botao
+	public float runSpeed = 15f;
+
+	//para checar o chao pro pulo
+	public Transform checaChao;
+	bool noChao = false;
+	float chaoRaio = 0.2f;
+	public LayerMask ehChao;
+
+	//para o pulo
+	public float forcaPulo = 700f;
+
+	//para animacoes
+	private Animator anim;
+
+	//para plataformas atravessaveis
+	public LayerMask LayerPlataforma;
+	bool naPlataforma = false;
+
+	//para o life do player
+	private float life = 100f;
+
+	//PARA WALL JUMP
+	bool tocandoParede = false;
+	public Transform checaParede;
+	float paredeRaio = 0.2f;
+	public float forcaPuloParede = 500f;
+
+
+	//PARA DOIS PULOS
+	//bool puloDuplo = false;
+
+	/******************************************************************/
+
+
+	void Start () {
+		anim = GetComponent<Animator>(); //inicializa o componente Animator do objeto ao qual esse script esta anexado.
+	}
+
+
+
+	void Update () {
+		/****************************************************************
+		 * 						MOVIMENTO VERTICAL	parte 1				*
+		 * **************************************************************/
+		if (noChao && Input.GetButtonDown ("Jump")) {
+						anim.SetBool ("noChao", false);
+						rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
+				}
+
+		/*---------PARA PLATAFORMAS ATRAVESSAVEIS----------*/
+		if (naPlataforma && Input.GetButtonDown ("Jump")) {
+			anim.SetBool ("noChao", false);
+			rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
+		}
+		/*----------------PARA DOIS PULOS-------------------
+
+		if ((noChao || !puloDuplo) && Input.GetButtonDown ("Jump")) {
+			anim.SetBool ("noChao", false);
+			rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
+		if (!puloDuplo && !noChao)
+			puloDuplo = true;
+		}*/
+
+		//PARA WALL JUMP
+		if (tocandoParede && Input.GetButtonDown ("Jump")) 
+		{
+			rigidbody2D.velocity = Vector2.zero;
+			rigidbody2D.angularVelocity = 0f;
+			float hori = Mathf.Floor(-Input.GetAxis("Horizontal"));
+			//rigidbody2D.velocity = new Vector2 (7000f * hori, 10f);
+			rigidbody2D.AddForce (new Vector2 (7000f*hori, forcaPulo));
+			Debug.Log (rigidbody2D.velocity.x);
+			Debug.Log (hori);
+		}
+		//---------------------------------------------------*/
+
+	}
+		/***************************************************************/
+
+
+
+
+	void FixedUpdate () {
+		/****************************************************************
+		 * 						MOVIMENTO VERTICAL	parte 2				*
+		 * **************************************************************/
+		//Physics2D.OverlapCircle pode ser substituido por OverlapCircleNonAlloc para melhorar performance, mas requer trabalho
+		noChao = Physics2D.OverlapCircle(checaChao.position, chaoRaio, ehChao); //checaChao eh um gameobject criado para customizar facilmente a altura para checar se esta tocando no chao. o raioChao eh o raio para detectar a colisao. ehChao eh um campo no inspector para determinar uma camada na qual o chao eh sempre desenhado.
+		anim.SetBool ("noChao", noChao);
+		anim.SetFloat ("velocidadeVertical", rigidbody2D.velocity.y);
+
+		/*----------------PARA DOIS PULOS-------------------
+		 * - reseta o uso dos dois pulos
+		//if (noChao)
+			//puloDuplo = false;
+		---------------------------------------------------*/
+
+
+		/*-----------------PARA WALL JUMP------------------*/
+		tocandoParede = Physics2D.OverlapCircle(checaParede.position, paredeRaio, ehChao);
+		if (tocandoParede) 
+		{
+			noChao = false;
+
+			//PARA DOIS PULOS COM WALL JUMP
+			//puloDuplo = false; 
+		}
+		/*--------------------------------------------------*/
+		/****************************************************************/
+
+
+
+
+		/****************************************************************
+		 * 						MOVIMENTO HORIZONTAL					*
+		 * **************************************************************/
+		float move = Input.GetAxis ("Horizontal");
+		anim.SetFloat ("Velocidade", Mathf.Abs (move));
+		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+		if (move > 0 && !olhandoDireita)
+			Flip ();
+		else if (move < 0 && olhandoDireita)
+			Flip ();
+		//para correr quando segura um botao:
+		else if (move !=0 && Input.GetButton("Run"))
+			rigidbody2D.velocity = new Vector2(move * runSpeed, rigidbody2D.velocity.y);
+		/****************************************************************/
+
+
+		/****************************************************************
+		 * 					PLATAFORMAS ATRAVESSAVEIS					*
+		 * **************************************************************/
+		naPlataforma = Physics2D.OverlapCircle(checaChao.position, chaoRaio, LayerPlataforma);
+		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), (LayerMask.NameToLayer("PlataformaAtravessavel")), (rigidbody2D.velocity.y > 0 || !naPlataforma));
+		anim.SetBool ("naPlataforma", naPlataforma);
+		/****************************************************************/
+		}
+
+
+
+
+		/*-----------PARA MUDAR O LADO QUE O PERSONAGEM OLHA-------*/
+		void Flip() {
+			olhandoDireita = !olhandoDireita;
+			Vector3 aEscala = transform.localScale;
+			aEscala.x *= -1;
+			transform.localScale = aEscala;
+		}
+		/*---------------------------------------------------------*/
+		
+		
+
+
+
+		/*****************************************************************
+		 *	RECEBE FORCA NOS EIXOS X E Y E DA UM IMPULSO NO PLAYER
+		*****************************************************************/
+		
+		public void Impulso(float x, float y){
+			rigidbody2D.AddForce (new Vector2 (x,y));			
+		}
+		/****************************************************************/		
+		
+		
+		
+		
+		
+		/*****************************************************************
+		* 				VARIAÇAO DE LIFE DO PLAYER
+		* **************************************************************/
+		
+		public void VariarLife(float variacaoLife){
+			life += variacaoLife;
+		/*----------------PARA VERIFICAR LIFE--------------*/
+		if (life <= 0)
+			Debug.Log ("Game over. Life = " + life);
+		//TODO Chamar tela de Game Over
+		/*-------------------------------------------------*/
+			//TODO Diminuir ou aumentar a barra de life ou tirar e colocar coraçoes
+		}
+		/****************************************************************/
+}
