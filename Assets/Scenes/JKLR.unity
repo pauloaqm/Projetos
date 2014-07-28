@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 582686774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3acfb98d58bde349a435ec6c5133ebe, type: 3}
+  m_Script: {fileID: 11500000, guid: eeed9007139b64044859172d5548ca6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camadaPlayer:
@@ -3160,7 +3160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdab2103daaa21147bdaaac7368b23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
 --- !u!212 &1979760115
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3234,7 +3233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c23d25d42cf63641a2631477f961ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: .0500000007
 --- !u!114 &1979760120
 MonoBehaviour:
   m_ObjectHideFlags: 0

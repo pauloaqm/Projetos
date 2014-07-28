@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class inimigoController : MonoBehaviour {
+public class inimigoControllerRaycast : MonoBehaviour {
 	
 	private float knockback = 300f;
 	private float danoBasico = 50f;

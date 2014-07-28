@@ -5,6 +5,10 @@ public class KitControllerBasico : MonoBehaviour {
 	/****************************************************************
 	 * 						DECLARACOES INICIAIS
 	 * *************************************************************/
+	//para que o personagem fique sem apanhar por um tempo apos apanhar
+	private bool invencivel = false;
+	private float tempoInvencivel;
+
 	//limitacao de velocidade vertical
 	public float vMaxY;
 
@@ -54,6 +58,22 @@ public class KitControllerBasico : MonoBehaviour {
 
 
 	void Update () {
+		/****************************************************************
+		 * 					INVENCIBILIDADE APOS APANHAR				*
+		 * **************************************************************/
+		if (invencivel){
+			tempoInvencivel += Time.deltaTime; //faz piscar o renderizador
+			if (tempoInvencivel < 3f) {
+				float remainder = tempoInvencivel % .3f;
+				renderer.enabled = remainder > .15f; 
+			}
+			else { // volta ao normal
+				renderer.enabled = true;
+				invencivel = false;
+			}
+		}
+		/***************************************************************/
+
 		/****************************************************************
 		 * 						MOVIMENTO VERTICAL	parte 1				*
 		 * **************************************************************/
@@ -207,13 +227,18 @@ public class KitControllerBasico : MonoBehaviour {
 		* **************************************************************/
 		
 		public void VariarLife(float variacaoLife){
-			life += variacaoLife;
+			
 
-		if (variacaoLife < 0) { //se a variaçao for um dano
-				parado = true; //impede movimento horizontal
-				anim.SetBool ("apanhou", true); //play na animation de levar dano
-				StartCoroutine (Esperar (0.3f)); //espera um tempo e volta ao normal
-				}
+		if (variacaoLife < 0 && invencivel == false) { //se a variaçao for um dano e o player nao estiver invencivel por ter apanhado a pouco tempo
+			life += variacaoLife;
+			invencivel = true; //seta a invencibilidade
+			tempoInvencivel = 0f; //zera o cronometro da invencibilidade
+			parado = true; //impede movimento horizontal
+			anim.SetBool ("apanhou", true); //play na animation de levar dano
+			StartCoroutine (Esperar (0.3f)); //espera um tempo e volta ao normal
+		}
+		else if (variacaoLife > 0)
+			life += variacaoLife;
 		/*----------------PARA VERIFICAR LIFE--------------*/
 		if (life <= 0)
 			Debug.Log ("Game over. Life = " + life);
