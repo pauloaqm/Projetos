@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 582686774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeed9007139b64044859172d5548ca6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ab67380c0007794497e01bc7226c45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camadaPlayer:
@@ -3244,7 +3244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f13907501f4b745ab21b28b35c846b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vMaxY: -10
+  vMaxY: -9
   maxSpeed: 7
   runSpeed: 10
   checaChao: {fileID: 1208418662}

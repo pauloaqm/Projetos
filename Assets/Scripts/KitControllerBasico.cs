@@ -77,13 +77,13 @@ public class KitControllerBasico : MonoBehaviour {
 		/****************************************************************
 		 * 						MOVIMENTO VERTICAL	parte 1				*
 		 * **************************************************************/
-		if (noChao && Input.GetButtonDown ("Jump")) {
+		if (noChao && Input.GetButtonDown ("Jump") && rigidbody2D.velocity.y == 0) {
 						anim.SetBool ("noChao", false);
 						rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
 				}
 
 		/*---------PARA PLATAFORMAS ATRAVESSAVEIS----------*/
-		if (naPlataforma && Input.GetButtonDown ("Jump") && Input.GetAxis("Vertical") >= 0) {
+		if (naPlataforma && Input.GetButtonDown ("Jump") && Input.GetAxis("Vertical") >= 0 && rigidbody2D.velocity.y == 0) {
 			anim.SetBool ("noChao", false);
 			rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
 		}

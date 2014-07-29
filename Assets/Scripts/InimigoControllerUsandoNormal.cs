@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InimigoControllerBasico : MonoBehaviour {
+public class InimigoControllerUsandoNormal : MonoBehaviour {
 	
 	private float knockback = 300f;
 	private float danoBasico = 50f;
