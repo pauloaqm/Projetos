@@ -8,40 +8,48 @@ public class inimigoPatrulhandoChecaChao : MonoBehaviour {
 	float chaoRaio = 0.2f;
 	bool noChao = false;
 	public LayerMask ehChao;
+	bool bateuParede = false;
+	public Transform checaParede;
+	bool parado = false;
 
 
 	void FixedUpdate(){
-		float esquerda = (transform.position.x)+10f;
-		float direita = (transform.position.x)+10f;
-		Vector2 andaEsquerda = new Vector2(esquerda,transform.position.y);
-		Vector2 andaDireita = new Vector2(direita,transform.position.y);
-
-		noChao = Physics2D.OverlapCircle(checaChaoPatrulha.position, chaoRaio, ehChao);
-		if (noChao == true){ 
-		    if (andandoEsquerda == true)
-				transform.position = Vector2.MoveTowards(transform.position, -andaEsquerda, velocidadePatrulha);
-			else
-				transform.position = Vector2.MoveTowards(transform.position, andaDireita, velocidadePatrulha);
-		}
-		else if (noChao == false){
-			andandoEsquerda = !andandoEsquerda;
-			Flip();
+		if(parado == false){
+			float esquerda = (transform.position.x)+10f;
+			float direita = (transform.position.x)+10f;
+			Vector2 andaEsquerda = new Vector2(esquerda,transform.position.y);
+			Vector2 andaDireita = new Vector2(direita,transform.position.y);
+			bateuParede = Physics2D.OverlapCircle(checaParede.position,0.2f,ehChao);//checa se bateu em uma parede pra poder voltar
+			noChao = Physics2D.OverlapCircle(checaChaoPatrulha.position, chaoRaio, ehChao);//checa se esta tocando no chao, quando nao tocar mais, volta
+			if (noChao == true){ 
+			    if (andandoEsquerda == true)
+					transform.position = Vector2.MoveTowards(transform.position, -andaEsquerda, velocidadePatrulha);
+				else
+					transform.position = Vector2.MoveTowards(transform.position, andaDireita, velocidadePatrulha);
+			}
+			if (noChao == false || bateuParede == true){ //se for cair da plataforma ou bater numa parede, muda de direcao
+				andandoEsquerda = !andandoEsquerda;
+				Flip();
+				bateuParede = false;
+			}
 		}
 	}
 
 	
-	void OnCollisionEnter2D(Collision2D coll) {
+	void OnCollisionEnter2D(Collision2D coll) { //se colidir com o player, espera um pouco antes de continuar o movimento
 		if(coll.gameObject.tag == "Player")
-			StartCoroutine (Esperar(1f));
+			StartCoroutine (Esperar(1.5f));
 	}
 	
 	
 	IEnumerator Esperar(float tempo) {
 		noChao = false;
-		//rigidbody2D.AddForce (new Vector2(5f,0));
-		yield return new WaitForSeconds(tempo); //espera um determinado tempo
+		parado = true;
 		rigidbody2D.velocity = Vector3.zero; //zera velocidades
 		rigidbody2D.angularVelocity = 0f;
+		//rigidbody2D.AddForce (new Vector2(5f,0));
+		yield return new WaitForSeconds(tempo); //espera um determinado tempo
+		parado = false;
 		noChao = true;
 	}
 	

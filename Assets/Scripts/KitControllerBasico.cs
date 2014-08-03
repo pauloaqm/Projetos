@@ -13,11 +13,12 @@ public class KitControllerBasico : MonoBehaviour {
 	public float vMaxY;
 
 	//para movimento horizontal
-	public float maxSpeed = 10f;
+	public float maxSpeed = 7f;
 	bool olhandoDireita = true;
+	public float velocidadeCorrida = 7f;
 
 	//para correr horizontalmente enquanto segura um botao
-	public float runSpeed = 15f;
+	public float runSpeed = 10f;
 
 	//para checar o chao pro pulo
 	public Transform checaChao;
@@ -127,6 +128,8 @@ public class KitControllerBasico : MonoBehaviour {
 
 
 	void FixedUpdate () {
+		//ignora colisoes com inimigos se estiver invencivel
+		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), (LayerMask.NameToLayer("Inimigos")), invencivel == true);
 		//limitacao de velocidade vertical
 		if(rigidbody2D.velocity.y < vMaxY)
 			rigidbody2D.velocity = (new Vector2 (rigidbody2D.velocity.x, vMaxY));
@@ -171,6 +174,10 @@ public class KitControllerBasico : MonoBehaviour {
 			else if (move !=0 && Input.GetButton("Run")) //para correr quando segura um botao:
 				rigidbody2D.velocity = new Vector2(move * runSpeed, rigidbody2D.velocity.y);
 		}
+		if (rigidbody2D.velocity.x > velocidadeCorrida || rigidbody2D.velocity.x < -velocidadeCorrida)
+			anim.SetBool("Correndo", true);
+		else
+			anim.SetBool("Correndo", false);
 		/****************************************************************/
 
 

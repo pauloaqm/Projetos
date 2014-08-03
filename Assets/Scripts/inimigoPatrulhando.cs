@@ -7,26 +7,28 @@ public class inimigoPatrulhando : MonoBehaviour {
 	float xMax;
 	public float velocidadePatrulha = 0.1f;
 	bool noChao = false;
+	public bool parado = false;
 
 	void FixedUpdate(){
-		Patrulha();
+		if(parado == false)
+			Patrulha();
 	}
 
 	void Patrulha(){
 		Vector2 alvoEsquerda = (new Vector2 (xMin, transform.position.y));
 		Vector2 alvoDireita = (new Vector2 (xMax,transform.position.y));
-		if ((transform.position.x) - (xMin) > 0 && andandoEsquerda == true && noChao == true)
+		if ((transform.position.x) - (xMin) > 0 && andandoEsquerda == true && noChao == true && parado == false)
 			transform.position = Vector2.MoveTowards(transform.position, alvoEsquerda, velocidadePatrulha);
 
-		if ((transform.position.x) - (xMax) < 0 && andandoEsquerda == false && noChao == true)
+		if ((transform.position.x) - (xMax) < 0 && andandoEsquerda == false && noChao == true && parado == false)
 			transform.position = Vector2.MoveTowards(transform.position, alvoDireita, velocidadePatrulha);
 
 				
-		if ((transform.position.x) - (xMin) < 0.5 && andandoEsquerda == true && noChao == true){
+		if ((transform.position.x) - (xMin) < 0.5 && andandoEsquerda == true && noChao == true && parado ==false){
 			Flip();
 			andandoEsquerda = false;
 		}
-		if ((transform.position.x) - (xMax) > -0.5 && andandoEsquerda == false && noChao == true){
+		if ((transform.position.x) - (xMax) > -0.5 && andandoEsquerda == false && noChao == true && parado == false){
 			Flip();
 			andandoEsquerda = true;
 		}
@@ -40,18 +42,24 @@ public class inimigoPatrulhando : MonoBehaviour {
 			xMax = (float)(xMax - 0.3);
 			noChao = true;
 		}
-		if(coll.gameObject.tag == "Player")
+		if(coll.gameObject.tag == "Player"){
+			Debug.Log("entrou");
+				transform.position = Vector2.MoveTowards(transform.position, transform.position,1f);
+				parado = true;
 				StartCoroutine (Esperar(1f));
+				}
 	}
 
 
 		IEnumerator Esperar(float tempo) {
 			noChao = false;
-			//rigidbody2D.AddForce (new Vector2(5f,0));
-			yield return new WaitForSeconds(tempo); //espera um determinado tempo
 			rigidbody2D.velocity = Vector3.zero; //zera velocidades
 			rigidbody2D.angularVelocity = 0f;
+			
+			//rigidbody2D.AddForce (new Vector2(5f,0));
+			yield return new WaitForSeconds(tempo); //espera um determinado tempo
 			noChao = true;
+			parado = false;
 	}
 	
 

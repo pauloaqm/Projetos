@@ -35,7 +35,7 @@ public class cameraFollow : MonoBehaviour
 	}
 	
 	
-	void FixedUpdate ()
+	void Update ()
 	{
 		TrackPlayer();
 	}
