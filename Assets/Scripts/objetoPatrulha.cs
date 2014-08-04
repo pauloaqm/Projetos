@@ -40,22 +40,27 @@ public class objetoPatrulha : MonoBehaviour {
 
 		if (movePlayer) {
 			if (((Input.GetKey(KeyCode.LeftShift)) && (Mathf.Abs(jogador.rigidbody2D.velocity.x) < 1f)) || (!Input.anyKey)){
-				if (andandoEsquerda == false)
+				if (andandoEsquerda == false) {
 					jogador.transform.Translate(Vector2.right * Time.deltaTime);
+				}
 				else
 					jogador.transform.Translate(-Vector2.right * Time.deltaTime);
 			}
 		}
 	}
-
+	
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Player") 
+		if (coll.gameObject.tag == "Player") {
 			movePlayer = true;				
+			cameraFollow.xMargin = 0.01f;
+		}
 	}
 
 	void OnCollisionExit2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Player")
+		if (coll.gameObject.tag == "Player"){
 			movePlayer = false;
+			cameraFollow.xMargin = 1.0f;
+		}
 	}
 
 }
