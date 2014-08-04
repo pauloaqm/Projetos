@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPrincipal: {fileID: 919940894}
+  offset: 1.20000005
 --- !u!1 &44820465
 GameObject:
   m_ObjectHideFlags: 0
