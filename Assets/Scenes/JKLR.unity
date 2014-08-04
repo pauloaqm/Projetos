@@ -7404,6 +7404,8 @@ GameObject:
   - 33: {fileID: 769080964}
   - 23: {fileID: 769080963}
   - 61: {fileID: 769080962}
+  - 114: {fileID: 769080965}
+  - 50: {fileID: 769080966}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -7418,7 +7420,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 769080960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.00558472, y: -2.60448551, z: 0}
+  m_LocalPosition: {x: -8.16010284, y: -2.60448551, z: 0}
   m_LocalScale: {x: 3.92499995, y: .324999988, z: 1}
   m_Children: []
   m_Father: {fileID: 859539400}
@@ -7461,6 +7463,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 769080960}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &769080965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769080960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc957cefcdb437458fac54a91e54c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMax: 2
+  yMax: 0
+--- !u!50 &769080966
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769080960}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &789980499
 GameObject:
   m_ObjectHideFlags: 0
@@ -18423,7 +18453,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979760113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.42288971, y: -.502754688, z: 0}
+  m_LocalPosition: {x: 124.667412, y: 7.65389919, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1208418662}
