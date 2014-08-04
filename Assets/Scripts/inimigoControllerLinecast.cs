@@ -20,7 +20,7 @@ public class inimigoControllerLinecast : MonoBehaviour {
 	void FixedUpdate() {
 		//as coordenadas para construir os vetores de inicio e fim do linecast. precisam ser menores do que as bordas do collider-
 		//se a area do collider for maior do que a que voce quer que seja vulneravel
-		xMin = collider2D.bounds.min.x+(float)0.20;
+		xMin = collider2D.bounds.min.x+(float)0.10;
 		xMax = collider2D.bounds.max.x-(float)0.20;
 		yMax = collider2D.bounds.max.y +(float)0.20;
 		//vetores de origem e destino do linecast construidos com as coordenadas ajustadas das bordas do collider
