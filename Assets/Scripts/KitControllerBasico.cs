@@ -5,6 +5,9 @@ public class KitControllerBasico : MonoBehaviour {
 	/****************************************************************
 	 * 						DECLARACOES INICIAIS
 	 * *************************************************************/
+	//para pegar moedas
+	public static int moedas = 0;
+
 	//para SFX
 	public AudioClip somPulo;
 
@@ -260,4 +263,17 @@ public class KitControllerBasico : MonoBehaviour {
 			//TODO Diminuir ou aumentar a barra de life ou tirar e colocar coraçoes
 		}
 		/****************************************************************/
+
+
+
+
+
+
+
+		/*-----------PARA VARIA A QUANTIDADE DE MOEDAS-------------*/
+		public void variacaoMoedas(int quantidadeMoedas) {
+			KitControllerBasico.moedas += quantidadeMoedas;
+			Debug.Log(moedas);
+		}
+		/*---------------------------------------------------------*/
 }
