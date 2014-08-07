@@ -39,7 +39,7 @@ public class objetoPatrulha : MonoBehaviour {
 			transform.Translate(-Vector2.up * Time.deltaTime);
 
 		if (movePlayer) {
-			if (((Input.GetKey(KeyCode.LeftShift)) && (Mathf.Abs(jogador.rigidbody2D.velocity.x) < 1f)) || (!Input.anyKey)){
+			if (((Input.GetButton("Run")) && (Mathf.Abs(jogador.rigidbody2D.velocity.x) < 1f)) || (!Input.anyKey)){
 				if (andandoEsquerda == false) {
 					jogador.transform.Translate(Vector2.right * Time.deltaTime);
 				}

@@ -120,6 +120,9 @@ public class KitControllerBasico : MonoBehaviour {
 				audio.PlayOneShot(somPulo);
 				}
 		}
+
+		if(rigidbody2D.velocity.y < vMaxY)
+			rigidbody2D.velocity = (new Vector2 (rigidbody2D.velocity.x, vMaxY));
 		//---------------------------------------------------*/
 
 	}
@@ -140,8 +143,7 @@ public class KitControllerBasico : MonoBehaviour {
 		//ignora colisoes com inimigos se estiver invencivel
 		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), (LayerMask.NameToLayer("Inimigos")), invencivel == true);
 		//limitacao de velocidade vertical
-		if(rigidbody2D.velocity.y < vMaxY)
-			rigidbody2D.velocity = (new Vector2 (rigidbody2D.velocity.x, vMaxY));
+
 
 
 		/****************************************************************
