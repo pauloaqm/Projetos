@@ -5,6 +5,9 @@ public class KitControllerBasico : MonoBehaviour {
 	/****************************************************************
 	 * 						DECLARACOES INICIAIS
 	 * *************************************************************/
+	//para SFX
+	public AudioClip somPulo;
+
 	//para que o personagem fique sem apanhar por um tempo apos apanhar
 	private bool invencivel = false;
 	private float tempoInvencivel;
@@ -81,12 +84,14 @@ public class KitControllerBasico : MonoBehaviour {
 		if (noChao && Input.GetButtonDown ("Jump") && rigidbody2D.velocity.y == 0) {
 						anim.SetBool ("noChao", false);
 						rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
+						audio.PlayOneShot(somPulo);
 				}
 
 		/*---------PARA PLATAFORMAS ATRAVESSAVEIS----------*/
 		if (naPlataforma && Input.GetButtonDown ("Jump") && Input.GetAxis("Vertical") >= 0 && rigidbody2D.velocity.y == 0) {
 			anim.SetBool ("noChao", false);
 			rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
+			audio.PlayOneShot(somPulo);
 		}
 		/*----------------PARA DOIS PULOS-------------------
 
@@ -109,6 +114,7 @@ public class KitControllerBasico : MonoBehaviour {
 				parado = true; //retira o controle horizontal do personagem para nao interferir no wall jump
 				StartCoroutine(Esperar(0.4f)); //espera um tempo para retornar o controle ao jogador
 				rigidbody2D.AddForce (new Vector2(600*hori,forcaPulo)); //enquanto isso, aplica a forca do wall jump
+				audio.PlayOneShot(somPulo);
 				}
 		}
 		//---------------------------------------------------*/
