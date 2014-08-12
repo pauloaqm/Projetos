@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab67380c0007794497e01bc7226c45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ajusteLinecastXMin: 0
+  ajusteLinecastXMax: .100000001
   camadaPlayer:
     serializedVersion: 2
     m_Bits: 4096
