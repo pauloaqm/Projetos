@@ -15723,7 +15723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alturaPulo: 3
-  velocidadePulo: .0700000003
+  velocidadePulo: .100000001
+  velocidadeVolta: .129999995
 --- !u!61 &864684701
 BoxCollider2D:
   m_ObjectHideFlags: 0

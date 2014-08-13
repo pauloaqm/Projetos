@@ -10,7 +10,8 @@ public class peixeController : MonoBehaviour {
 	public float alturaPulo;
 	Vector2 posicaoInicial;
 	Vector2 posicaoDestino;
-	public float velocidadePulo = 0.07f;
+	public float velocidadePulo = 0.1f;
+	public float velocidadeVolta = 0.13f;
 	bool subindo = true;
 	bool esperando = false;
 
@@ -23,13 +24,16 @@ public class peixeController : MonoBehaviour {
 	void Update(){
 		if (subindo == true){
 			transform.position = Vector2.MoveTowards(transform.position, posicaoDestino, velocidadePulo);
-			if (transform.position.y >= posicaoDestino.y)
+			if (transform.position.y >= posicaoDestino.y){
 				subindo = false;
+				transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y*(-1), transform.localScale.z);
+				}
 			}
 		else if (subindo == false){
-			transform.position = Vector2.MoveTowards(transform.position, posicaoInicial, velocidadePulo);
+			transform.position = Vector2.MoveTowards(transform.position, posicaoInicial, velocidadeVolta);
 			if (transform.position.y <= posicaoInicial.y && esperando == false){
 				esperando = true;
+				transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y*(-1), transform.localScale.z);
 				StartCoroutine (Esperar (2f));
 				}
 			}
