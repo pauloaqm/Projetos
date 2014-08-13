@@ -12,6 +12,7 @@ public class peixeController : MonoBehaviour {
 	Vector2 posicaoDestino;
 	public float velocidadePulo = 0.07f;
 	bool subindo = true;
+	bool esperando = false;
 
 
 	void Start(){
@@ -20,7 +21,6 @@ public class peixeController : MonoBehaviour {
 	}
 
 	void Update(){
-		//Debug.Log (gameObject.transform.position.y);
 		if (subindo == true){
 			transform.position = Vector2.MoveTowards(transform.position, posicaoDestino, velocidadePulo);
 			if (transform.position.y >= posicaoDestino.y)
@@ -28,8 +28,10 @@ public class peixeController : MonoBehaviour {
 			}
 		else if (subindo == false){
 			transform.position = Vector2.MoveTowards(transform.position, posicaoInicial, velocidadePulo);
-			if (transform.position.y <= posicaoInicial.y)
-				subindo = true;//StartCoroutine (Esperar (2f));
+			if (transform.position.y <= posicaoInicial.y && esperando == false){
+				esperando = true;
+				StartCoroutine (Esperar (2f));
+				}
 			}
 	}
 
@@ -48,6 +50,6 @@ public class peixeController : MonoBehaviour {
 	IEnumerator Esperar(float tempo){
 		yield return new WaitForSeconds(tempo); //espera um determinado tempo
 		subindo = true;
-		//Debug.Log ("esperar");
+		esperando = false;
 	}
 }

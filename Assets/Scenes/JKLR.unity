@@ -12634,8 +12634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc957cefcdb437458fac54a91e54c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMax: 6
-  yMax: 0
+  andandoEsquerda: 1
+  posFinalX: 0
+  posFinalY: 0
 --- !u!1 &699253265
 GameObject:
   m_ObjectHideFlags: 0
@@ -14272,8 +14273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc957cefcdb437458fac54a91e54c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMax: 6
-  yMax: 0
+  andandoEsquerda: 0
+  posFinalX: 0
+  posFinalY: 0
 --- !u!50 &769080966
 Rigidbody2D:
   m_ObjectHideFlags: 0
