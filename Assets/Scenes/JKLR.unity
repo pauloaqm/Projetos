@@ -15704,6 +15704,7 @@ GameObject:
   - 212: {fileID: 864684702}
   - 61: {fileID: 864684701}
   - 114: {fileID: 864684700}
+  - 95: {fileID: 864684704}
   m_Layer: 11
   m_Name: Peixe
   m_TagString: Untagged
@@ -15756,7 +15757,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db680030554116d40aab8e800f4af1ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ccfc58cb98bf5249bd5e870946165f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &864684703
 Transform:
@@ -15765,11 +15766,25 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 864684699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 165, y: 4.5999999, z: 3.0616168e-17}
+  m_LocalPosition: {x: 165, y: 4.5, z: -3.0616168e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!95 &864684704
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 864684699}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4367f14f947af6d41a1dc0cb2d867f74, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
 --- !u!1 &866471360
 GameObject:
   m_ObjectHideFlags: 0
@@ -16698,7 +16713,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 919940889}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6523086286e70341a2f910adf4806ba, type: 3}
   m_Name: 
@@ -16714,15 +16729,11 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 919940889}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77c89b638303a1f4f896a4dcde7fa076, type: 3}
+  m_Script: {fileID: 11500000, guid: 39b9ce9f3a762994db76b0fa1beab317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetViewportSizeInPixels: {x: 480, y: 320}
-  lockToPixels: 1
-  pixelsPerUnit: 32
-  followTarget: {fileID: 1979760113}
 --- !u!1 &934191994
 GameObject:
   m_ObjectHideFlags: 0
@@ -34195,7 +34206,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979760113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.832092, y: 9.26371288, z: -1}
+  m_LocalPosition: {x: 160.457886, y: 9.28802109, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1208418662}
