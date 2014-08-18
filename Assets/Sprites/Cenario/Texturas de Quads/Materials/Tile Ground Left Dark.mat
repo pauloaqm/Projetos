@@ -24,7 +24,7 @@ Material:
         first:
           name: _Side
         second:
-          m_Texture: {fileID: 2800000, guid: cc59e2e1b1deb8e4a8900a913ad87adf, type: 3}
+          m_Texture: {fileID: 2800000, guid: c728aea49b4db96479f200344ea20a9a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:

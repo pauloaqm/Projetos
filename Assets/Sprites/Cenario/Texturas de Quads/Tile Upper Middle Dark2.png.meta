@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 88299d87f565be0418f6a3d56afd9dbc
+guid: 82217d297da92f7409d5895c2839ce20
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Tile Upper Left Sem Sombra Dark
+    21300000: Tile Upper Middle Dark2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
