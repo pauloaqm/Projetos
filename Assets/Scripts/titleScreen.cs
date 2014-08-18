@@ -83,7 +83,8 @@ public class titleScreen : MonoBehaviour {
 		GUI.SetNextControlName ("Novo Jogo");
 		novoJogo = new Rect ((janelaWidth-300)/2, 200, 300, 70);
 		if (GUI.Button (novoJogo, new GUIContent ("Novo Jogo", "Novo Jogo GUIContent"))) {
-			Application.LoadLevel(1);
+			//Application.LoadLevel(1);
+			CameraFade.StartAlphaFade( Color.black, false, 2f, 0f, () => { Application.LoadLevel(1); } );
 		}
 
 		//Cria o botao Sair 
@@ -96,5 +97,9 @@ public class titleScreen : MonoBehaviour {
 
 		hover = GUI.tooltip;
 	}
-	
+
+	void loadLevelOnComplete( int levelIndex )
+	{
+		Application.LoadLevel(levelIndex);
+	}
 }

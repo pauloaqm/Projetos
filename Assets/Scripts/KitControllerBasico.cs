@@ -60,6 +60,7 @@ public class KitControllerBasico : MonoBehaviour {
 
 	void Start () {
 		anim = GetComponent<Animator>(); //inicializa o componente Animator do objeto ao qual esse script esta anexado.
+		CameraFade.StartAlphaFade( Color.black, true, 2f, 0f );
 	}
 
 
