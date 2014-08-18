@@ -14,8 +14,9 @@ public class peixeController : MonoBehaviour {
 	Vector2 posicaoDestino;
 	public float velocidadePulo = 0.1f;
 	public float velocidadeVolta = 0.13f;
-	bool subindo = true; //o peixe comeca subindo e tem essa booleana invertida toda vez que eh rodada a coroutine Esperar.
-	bool esperando = false;
+	bool subindo = false; //o peixe comeca subindo e tem essa booleana invertida toda vez que eh rodada a coroutine Esperar.
+	bool esperando = true;
+	[SerializeField] float tempoAntesDoPulo;
 
 
 	void Start(){
@@ -23,6 +24,7 @@ public class peixeController : MonoBehaviour {
 		posicaoDestino = new Vector2 (posicaoInicial.x, (posicaoInicial.y + alturaPulo));
 		anim = GetComponent<Animator> ();
 		anim.SetBool("Subindo", true);
+		StartCoroutine (Esperar (tempoAntesDoPulo));
 	}
 
 	void Update(){
@@ -61,7 +63,7 @@ public class peixeController : MonoBehaviour {
 			GameObject jogador = coll.gameObject;
 			Debug.Log ("apanhou");
 			jogador.GetComponent<KitControllerBasico>().VariarLife ((ConfiguracoesGlobais.dificuldade * danoBasico)*-1);
-			jogador.GetComponent<KitControllerBasico>().Impulso(knockback*(-posicaoRelativa[0].normal[0]), 0);
+			jogador.GetComponent<KitControllerBasico>().Impulso(knockback*(-posicaoRelativa[0].normal[1]), 0); // usa normal[1] para jogar o player para os lados e evitar que o player possa ficar em cima do peixe
 		}
 	}
 	
