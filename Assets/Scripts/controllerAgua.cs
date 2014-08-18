@@ -4,7 +4,7 @@ using System.Collections;
 public class controllerAgua : MonoBehaviour {
 	float danoBasico = 50f;
 	float knockback = 0f;
-	void OnCollisionStay2D(Collision2D coll) {
+	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player") { //checa a tag de quem colidiu pra ver se eh player
 			coll.rigidbody.velocity = Vector2.zero; //zera velocidades do player
 			coll.rigidbody.angularVelocity = 0f;
