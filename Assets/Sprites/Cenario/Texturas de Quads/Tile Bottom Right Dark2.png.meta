@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 913d27b9b4187fa47afdfa2e01cef91a
+guid: 229016860a6758743aa505e5629eaeaf
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Tile Ground Left com Upper Right Dark
+    21300000: Tile Bottom Right Dark2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

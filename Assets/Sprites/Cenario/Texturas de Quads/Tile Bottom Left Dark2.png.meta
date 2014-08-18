@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 2a1d90920a4ecff4b824f346683c766f
+guid: b5edcea111ed6a846b47a5e8b4b5bae1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Tile Upper Middle Dark
+    21300000: Tile Bottom Left Dark2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

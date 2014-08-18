@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 39c063f2a27fabe409e1a2d1bae94734
+guid: 1d1588d14f9259145af0bc8d28244a97
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Tile Bottom Right Dark
+    21300000: Tile Upper Middle Sem Grama Dark2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

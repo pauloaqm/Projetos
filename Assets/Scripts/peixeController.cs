@@ -10,8 +10,8 @@ public class peixeController : MonoBehaviour {
 
 	//para a movimentacao do peixe
 	public float alturaPulo;
-	Vector2 posicaoInicial;
-	Vector2 posicaoDestino;
+	Vector3 posicaoInicial;
+	Vector3 posicaoDestino;
 	public float velocidadePulo = 0.1f;
 	public float velocidadeVolta = 0.13f;
 	bool subindo = false; //o peixe comeca subindo e tem essa booleana invertida toda vez que eh rodada a coroutine Esperar.
@@ -20,8 +20,8 @@ public class peixeController : MonoBehaviour {
 
 
 	void Start(){
-		posicaoInicial = new Vector2 (transform.position.x, transform.position.y);
-		posicaoDestino = new Vector2 (posicaoInicial.x, (posicaoInicial.y + alturaPulo));
+		posicaoInicial = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+		posicaoDestino = new Vector3 (posicaoInicial.x, (posicaoInicial.y + alturaPulo), transform.position.z);
 		anim = GetComponent<Animator> ();
 		anim.SetBool("Subindo", true);
 		StartCoroutine (Esperar (tempoAntesDoPulo));
@@ -32,7 +32,7 @@ public class peixeController : MonoBehaviour {
 		if (subindo == true && esperando == false){
 			anim.SetBool("Subindo", true);
 			anim.SetBool("Descendo", false);
-			transform.position = Vector2.MoveTowards(transform.position, posicaoDestino, velocidadePulo);
+			transform.position = Vector3.MoveTowards(transform.position, posicaoDestino, velocidadePulo);
 			//ao chegar (ou passar) da posicao de destino, seta a bool de que esta esperando e comeca a coroutine Esperar. Ao final da Coroutine,-
 			//a bool esperando eh setada devolta para false, permitindo que o inimigo volte a se mover:
 			if (transform.position.y >= posicaoDestino.y){
@@ -44,7 +44,7 @@ public class peixeController : MonoBehaviour {
 		else if (subindo == false && esperando == false){
 			anim.SetBool("Subindo", false);
 			anim.SetBool("Descendo", true);
-			transform.position = Vector2.MoveTowards(transform.position, posicaoInicial, velocidadeVolta);
+			transform.position = Vector3.MoveTowards(transform.position, posicaoInicial, velocidadeVolta);
 			//quando chega ou passa da posicao inicial, roda a coroutine Esperar e inverte a scale.y do peixe. Na subida isso eh feito-
 			//dentro da coroutine Esperar, para evitar que o peixe vire de cabeca para baixo antes de comecar a descer:
 			if (transform.position.y <= posicaoInicial.y){
