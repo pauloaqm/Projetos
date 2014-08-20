@@ -50,7 +50,11 @@ public class KitControllerBasico : MonoBehaviour {
 	public Transform checaParede;
 	float paredeRaio = 0.2f;
 	public float forcaPuloParede = 500f;
-	public bool parado = false;
+	private bool parado = false;
+	public bool Parado {
+				get { return parado;}
+				set { parado = value;}
+		}
 
 	//PARA DOIS PULOS
 	//bool puloDuplo = false;
@@ -284,8 +288,10 @@ public class KitControllerBasico : MonoBehaviour {
 		}
 		/*---------------------------------------------------------*/
 
+		/*-----------PARA SALVAR QUAL FASE FOI CARREGADA-----------*/
 		void OnLevelWasLoaded(int level) {			
 			if (level != 2)
 				PlayerPrefs.SetInt("level",level);		
 		}
+		/*---------------------------------------------------------*/
 }

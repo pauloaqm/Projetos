@@ -78,7 +78,7 @@ public class gameover : MonoBehaviour {
 	//Funcao que controla o que vai ser colocado na janela
 	void WindowFunction (int windowID) {
 
-		GUI.Label(new Rect((janelaWidth-300)/2, 100, 300, 70), "Gameover");
+		GUI.Label(new Rect((janelaWidth-300)/2, 100, 300, 70), "Game Over");
 
 		//Cria o botao Novo jogo 
 		//O GUIContent serve para localizar o hover do mouse
