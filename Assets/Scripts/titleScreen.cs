@@ -98,8 +98,4 @@ public class titleScreen : MonoBehaviour {
 		hover = GUI.tooltip;
 	}
 
-	void loadLevelOnComplete( int levelIndex )
-	{
-		Application.LoadLevel(levelIndex);
-	}
 }

@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class inimigoControllerLinecast : MonoBehaviour {
-
+	public AudioClip somMorte;
+	public AudioClip somDano;
 	float xMin;
 	float xMax;
 	float yMax;
@@ -37,6 +38,7 @@ public class inimigoControllerLinecast : MonoBehaviour {
 			jogador.rigidbody2D.angularVelocity = 0f;
 			jogador.GetComponent<KitControllerBasico>().Impulso(0, ConfiguracoesGlobais.forcaImpulsoInimigo); //impulsiona ele pra cima, usando a funcao prevista no controller do player
 			anim.SetBool("Morreu",true); //seta a animacao de morrer, que tem ao final dela, um evento para rodar a funcao Morrer()
+			audio.PlayOneShot(somMorte);
 		}
 	}
 
@@ -48,6 +50,7 @@ public class inimigoControllerLinecast : MonoBehaviour {
 			var posicaoRelativa = coll.contacts; //daqui em diante eh a parte que usa a normal para knockback 
 			GameObject jogador = GameObject.FindGameObjectWithTag("Player");
 			Debug.Log ("apanhou");
+			audio.PlayOneShot(somDano, 0.55f);
 			jogador.GetComponent<KitControllerBasico>().VariarLife ((ConfiguracoesGlobais.dificuldade * danoBasico)*-1);
 			jogador.GetComponent<KitControllerBasico>().Impulso(knockback*(-posicaoRelativa[0].normal[0]), 0);
 		}

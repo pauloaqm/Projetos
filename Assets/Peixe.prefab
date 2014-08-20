@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
   - 61: {fileID: 6100000}
+  - 82: {fileID: 8200000}
   m_Layer: 11
   m_Name: Peixe
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 165, y: 4.5, z: -3}
+  m_LocalPosition: {x: 30.064209, y: 3.11981249, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,6 +43,64 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .460000008, y: 1}
   m_Center: {x: 0, y: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: f2d7dd53cd63ebf479d777597f9a4504, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 5
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .712707162
+      value: 1
+      inSlope: -1.33386564
+      outSlope: -1.33386564
+      tangentMode: 0
+    - time: 1
+      value: .518518507
+      inSlope: -.750299394
+      outSlope: -.750299394
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -67,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa37ab6e9ec5dd489003f3f8df7b711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splash: {fileID: 8300000, guid: f2d7dd53cd63ebf479d777597f9a4504, type: 3}
   alturaPulo: 4
   velocidadePulo: .100000001
   velocidadeVolta: .129999995

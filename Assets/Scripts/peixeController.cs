@@ -6,6 +6,7 @@ public class peixeController : MonoBehaviour {
 	float danoBasico = 50f;
 	float knockback = 500f;
 
+	public AudioClip splash;
 	private Animator anim;
 
 	//para a movimentacao do peixe
@@ -48,6 +49,7 @@ public class peixeController : MonoBehaviour {
 			//quando chega ou passa da posicao inicial, roda a coroutine Esperar e inverte a scale.y do peixe. Na subida isso eh feito-
 			//dentro da coroutine Esperar, para evitar que o peixe vire de cabeca para baixo antes de comecar a descer:
 			if (transform.position.y <= posicaoInicial.y){
+				audio.PlayOneShot(splash);
 				transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y*(-1), transform.localScale.z);
 				esperando = true;
 				StartCoroutine (Esperar (2f));
@@ -76,8 +78,11 @@ public class peixeController : MonoBehaviour {
 		yield return new WaitForSeconds(tempo); 
 		//se a coroutine foi chamada na subida do peixe, agora inverte a scale.y para o peixe apontar para baixo. Isso soh eh feito na subida, pq-
 		//queremos que o peixe fique parado olhando para cima, antes de descer olhando para baixo.
-		if (subindo == true)
+		if (subindo == true){
 			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y*(-1), transform.localScale.z);
+			}
+		if (subindo == false)
+			audio.PlayOneShot(splash);
 		//inverte a bool subindo, fazendo o peixe mudar de direcao de movimento
 		subindo = !subindo;
 		//a bool abaixo controla quando o peixe pode se mover. todo o movimento esta condicionado a essa bool ser false:
