@@ -10,4 +10,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JKLR.unity
   - enabled: 1
+    path: Assets/Scenes/Gameover.unity
+  - enabled: 0
     path: Assets/Scenes/Transicao.unity

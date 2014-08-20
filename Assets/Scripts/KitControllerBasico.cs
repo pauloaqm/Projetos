@@ -175,7 +175,7 @@ public class KitControllerBasico : MonoBehaviour {
 		 * 						MOVIMENTO HORIZONTAL					*
 		 * **************************************************************/
 
-		if (!parado){ //se nao tiver parado por levar dano, pode se movimentar
+		if (parado == false){ //se nao tiver parado por levar dano, pode se movimentar
 			float move = Input.GetAxis ("Horizontal");
 			anim.SetFloat ("Velocidade", Mathf.Abs (move));
 			rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
@@ -259,9 +259,13 @@ public class KitControllerBasico : MonoBehaviour {
 		else if (variacaoLife > 0)
 			life += variacaoLife;
 		/*----------------PARA VERIFICAR LIFE--------------*/
-		if (life <= 0)
-			Debug.Log ("Game over. Life = " + life);
-		//TODO Chamar tela de Game Over
+		if (life <= 0){
+			//Debug.Log ("Game over. Life = " + life);
+			//TODO Chamar animaçao da morte
+			CameraFade.StartAlphaFade( Color.black, false, 2f, 0f, () => { Application.LoadLevel(2); } );
+
+
+		}
 		/*-------------------------------------------------*/
 			//TODO Diminuir ou aumentar a barra de life ou tirar e colocar coraçoes
 		}
@@ -279,4 +283,9 @@ public class KitControllerBasico : MonoBehaviour {
 			Debug.Log(moedas);
 		}
 		/*---------------------------------------------------------*/
+
+		void OnLevelWasLoaded(int level) {			
+			if (level != 2)
+				PlayerPrefs.SetInt("level",level);		
+		}
 }
