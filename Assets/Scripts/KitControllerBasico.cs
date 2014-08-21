@@ -111,7 +111,7 @@ public class KitControllerBasico : MonoBehaviour {
 		}*/
 
 		//PARA WALL JUMP
-		if (tocandoParede && (noChao == false) && (naPlataforma == false) && Input.GetButtonDown ("Jump")) //noChao tem que ser falso para evitar dois pulos acumulados
+		if (tocandoParede && (noChao == false) && (naPlataforma == false) && Input.GetButtonDown ("Jump") && parado == false) //noChao tem que ser falso para evitar dois pulos acumulados
 		{																		//quando o personagem estiver tocando em parede e chao ao mesmo tempo
 			//pega o valor arredondado para inteiro do eixo horizontal
 			float hori = Mathf.Floor(-Input.GetAxis("Horizontal"));
@@ -199,7 +199,7 @@ public class KitControllerBasico : MonoBehaviour {
 		//liga a animacao de idle quando esta em pe na plataforma, para evitar ficar na animacao de caindo
 		anim.SetBool ("naPlataforma", naPlataforma);
 		//para descer de uma plataforma
-		if(Input.GetAxis("Vertical") <= -0.5 && Input.GetButton("Jump") && naPlataforma){
+		if(Input.GetAxis("Vertical") <= -0.5 && Input.GetButton("Jump") && naPlataforma && parado == false){
 			GetComponent<CircleCollider2D>().enabled = false;
 			GetComponent<BoxCollider2D>().enabled = false; 
 			//rigidbody2D.AddForce (new Vector2(0,-20f));
@@ -292,8 +292,8 @@ public class KitControllerBasico : MonoBehaviour {
 				GetComponent<BoxCollider2D>().enabled = false;
 				GetComponent<CircleCollider2D>().enabled = false;
 				rigidbody2D.AddForce (new Vector2 (0, 300f));
-				Camera.main.GetComponent<cameraFollow>().maxXAndY = new Vector2(this.transform.position.x, this.transform.position.y);
-				Camera.main.GetComponent<cameraFollow>().minXAndY = new Vector2(this.transform.position.x, this.transform.position.y);
+				Camera.main.GetComponent<cameraFollow>().maxXAndY = new Vector2(transform.position.x, transform.position.y);
+				Camera.main.GetComponent<cameraFollow>().minXAndY = new Vector2(transform.position.x, transform.position.y);
 				Invoke("TelaGameOver",3f);
 				transform.position = new Vector3 (transform.position.x, transform.position.y, -20);
 			//TODO adicionar som ao morrer
