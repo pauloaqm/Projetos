@@ -43,7 +43,7 @@ public class KitControllerBasico : MonoBehaviour {
 	bool naPlataforma = false;
 
 	//para o life do player
-	private float life = 100f;
+	public static float life = 100f;
 
 	//PARA WALL JUMP
 	bool tocandoParede = false;
