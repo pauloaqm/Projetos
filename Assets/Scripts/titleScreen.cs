@@ -6,10 +6,10 @@ public class titleScreen : MonoBehaviour {
 	public GUISkin titleScreenGUI;
 	private float janelaWidth = 520;
 	private float janelaHeight = 520;
-	private Rect janela, novoJogo, sair;
+	private Rect janela, novoJogo, sair, opcoes;
 
 	//Declaraçao do array que contem as opcoes do menu, do indice que acompanha qual opcao esta selecionada
-	private string[] menuOptions = new string[2] {"Novo Jogo","Sair"};
+	private string[] menuOptions = new string[3] {"Novo Jogo","Opções","Sair"};
 	private int selectedIndex = 0; 
 
 	//Variavel que vai dizer em qual opcao o mouse esta posicionado (hover)
@@ -56,9 +56,15 @@ public class titleScreen : MonoBehaviour {
 			GUI.FocusControl (menuOptions[selectedIndex]);
 		}
 
+		//Da o foco para o item Opcoes se o mouse estiver em cima do botao
+		if(hover=="Opcoes GUIContent"){
+			selectedIndex = 1;
+			GUI.FocusControl (menuOptions[selectedIndex]);
+		}
+
 		//Da o foco para o item Sair se o mouse estiver em cima do botao
 		if(hover=="Sair GUIContent"){
-			selectedIndex = 1;
+			selectedIndex = 2;
 			GUI.FocusControl (menuOptions[selectedIndex]);
 		}
 	}
@@ -81,16 +87,24 @@ public class titleScreen : MonoBehaviour {
 		//Cria o botao Novo jogo 
 		//O GUIContent serve para localizar o hover do mouse
 		GUI.SetNextControlName ("Novo Jogo");
-		novoJogo = new Rect ((janelaWidth-300)/2, 200, 300, 70);
+		novoJogo = new Rect ((janelaWidth-300)/2, 300, 300, 40);
 		if (GUI.Button (novoJogo, new GUIContent ("Novo Jogo", "Novo Jogo GUIContent"))) {
 			//Application.LoadLevel(1);
 			CameraFade.StartAlphaFade( Color.black, false, 2f, 0f, () => { Application.LoadLevel(1); } );
 		}
 
+		//Cria o botao opcoes 
+		//O GUIContent serve para localizar o hover do mouse
+		GUI.SetNextControlName ("Opções");
+		opcoes = new Rect ((janelaWidth-300)/2, 350, 300, 40);
+		if (GUI.Button (opcoes, new GUIContent ("Opções", "Opcoes GUIContent"))) {
+			//TODO Chamar as opcoes
+		}
+
 		//Cria o botao Sair 
 		//O GUIContent serve para localizar o hover do mouse
 		GUI.SetNextControlName ("Sair");
-		sair = new Rect ((janelaWidth-300)/2, 300, 300, 70);
+		sair = new Rect ((janelaWidth-300)/2, 400, 300, 40);
 		if (GUI.Button (sair, new GUIContent ("Sair", "Sair GUIContent"))) {
 			Application.Quit();
 		}
