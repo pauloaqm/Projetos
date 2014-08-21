@@ -75,7 +75,7 @@ public class KitControllerBasico : MonoBehaviour {
 		 * **************************************************************/
 		if (invencivel){
 			tempoInvencivel += Time.deltaTime; //faz piscar o renderizador
-			if (tempoInvencivel < 3f) {
+			if (tempoInvencivel < 3f && life >0) {
 				float remainder = tempoInvencivel % .3f;
 				renderer.enabled = remainder > .15f; 
 			}
@@ -230,13 +230,7 @@ public class KitControllerBasico : MonoBehaviour {
 		else if (variacaoLife > 0)
 			life += variacaoLife;
 		/*----------------PARA VERIFICAR LIFE--------------*/
-		if (life <= 0){
-			//Debug.Log ("Game over. Life = " + life);
-			anim.SetBool("Morreu",true);
-			rigidbody2D.velocity = Vector3.zero; 
-			rigidbody2D.angularVelocity = 0f; 
-			parado = true;
-		}
+
 		/*-------------------------------------------------*/
 			//TODO Diminuir ou aumentar a barra de life ou tirar e colocar coraçoes
 		}
@@ -282,11 +276,27 @@ public class KitControllerBasico : MonoBehaviour {
 		/*---------------------------------------------------------*/
 
 		IEnumerator Esperar(float tempo) {
-			
+			Debug.Log("esperar");
 			yield return new WaitForSeconds(tempo); //espera um determinado tempo
 			anim.SetBool ("apanhou", false); //reseta a animaçao de paanhar para idle
-			parado = false; //retorna o movimento horizontal
-			GetComponent<CircleCollider2D>().enabled = true; //para uso nas plataformas atravessaveis
-			GetComponent<BoxCollider2D>().enabled = true; 
+			if(life>0){
+				parado = false; //retorna o movimento horizontal
+				GetComponent<CircleCollider2D>().enabled = true; //para uso nas plataformas atravessaveis
+				GetComponent<BoxCollider2D>().enabled = true;
+			}
+			else{
+				anim.SetBool("Morreu",true);
+				rigidbody2D.velocity = Vector3.zero; 
+				rigidbody2D.angularVelocity = 0f; 
+				parado = true;
+				GetComponent<BoxCollider2D>().enabled = false;
+				GetComponent<CircleCollider2D>().enabled = false;
+				rigidbody2D.AddForce (new Vector2 (0, 300f));
+				Camera.main.GetComponent<cameraFollow>().maxXAndY = new Vector2(this.transform.position.x, this.transform.position.y);
+				Camera.main.GetComponent<cameraFollow>().minXAndY = new Vector2(this.transform.position.x, this.transform.position.y);
+				Invoke("TelaGameOver",3f);
+				transform.position = new Vector3 (transform.position.x, transform.position.y, -20);
+			//TODO adicionar som ao morrer
+			}
 		}
 }
