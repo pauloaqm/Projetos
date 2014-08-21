@@ -8,7 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Tile Ground Left
   m_Shader: {fileID: 4800000, guid: 7c5b73414f8be7e46905c39085344912, type: 3}
-  m_ShaderKeywords: []
+  m_ShaderKeywords:
+  - PIXELSNAP_ON
   m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
@@ -18,7 +19,7 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: ab798b398965f97458f342c06653b47d, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Scale: {x: 1, y: 8}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -42,6 +43,10 @@ Material:
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
+      data:
+        first:
+          name: PixelSnap
+        second: 1
       data:
         first:
           name: _SideScale

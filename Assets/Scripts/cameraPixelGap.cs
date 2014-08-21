@@ -12,8 +12,8 @@ public class cameraPixelGap : MonoBehaviour {
 	void Update () {
 		float pixelsX = Mathf.Floor (player.position.x * 32);
 		float pixelsY = Mathf.Floor (player.position.y * 32);
-		float targetX = pixelsX/32;
-		float targetY = pixelsY/32;
+		float targetX = (pixelsX+0.5f)/32;
+		float targetY = (pixelsY+0.5f)/32;
 		transform.position = new Vector3(targetX,targetY, transform.position.z);
 	}
 }
