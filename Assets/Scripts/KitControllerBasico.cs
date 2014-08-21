@@ -89,14 +89,14 @@ public class KitControllerBasico : MonoBehaviour {
 		/****************************************************************
 		 * 						MOVIMENTO VERTICAL	parte 1				*
 		 * **************************************************************/
-		if (noChao && Input.GetButtonDown ("Jump") && rigidbody2D.velocity.y == 0) {
+		if (noChao && Input.GetButtonDown ("Jump") && rigidbody2D.velocity.y == 0 && parado == false) {
 						anim.SetBool ("noChao", false);
 						rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
 						audio.PlayOneShot(somPulo);
 				}
 
 		/*---------PARA PLATAFORMAS ATRAVESSAVEIS----------*/
-		if (naPlataforma && Input.GetButtonDown ("Jump") && Input.GetAxis("Vertical") >= 0 && rigidbody2D.velocity.y == 0) {
+		if (naPlataforma && Input.GetButtonDown ("Jump") && Input.GetAxis("Vertical") >= 0 && rigidbody2D.velocity.y == 0 && parado == false) {
 			anim.SetBool ("noChao", false);
 			rigidbody2D.AddForce (new Vector2 (0, forcaPulo));
 			audio.PlayOneShot(somPulo);
@@ -132,15 +132,7 @@ public class KitControllerBasico : MonoBehaviour {
 
 	}
 		/***************************************************************/
-
-	IEnumerator Esperar(float tempo) {
-
-		yield return new WaitForSeconds(tempo); //espera um determinado tempo
-		anim.SetBool ("apanhou", false); //reseta a animaçao de paanhar para idle
-		parado = false; //retorna o movimento horizontal
-		GetComponent<CircleCollider2D>().enabled = true; //para uso nas plataformas atravessaveis
-		GetComponent<BoxCollider2D>().enabled = true; 
-	}
+	
 
 
 
@@ -215,32 +207,7 @@ public class KitControllerBasico : MonoBehaviour {
 			}
 		/****************************************************************/
 		}
-
-
-
-
-		/*-----------PARA MUDAR O LADO QUE O PERSONAGEM OLHA-------*/
-		void Flip() {
-			olhandoDireita = !olhandoDireita; //inverte o estado da booleana, ja que agora o personagem esta invertido tb
-			Vector3 aEscala = transform.localScale; //pega a scale do componente transform
-			aEscala.x *= -1; //inver a scale
-			transform.localScale = aEscala; //aplica no transform
-		}
-		/*---------------------------------------------------------*/
-		
-		
-
-
-
-		/*****************************************************************
-		 *	RECEBE FORCA NOS EIXOS X E Y E DA UM IMPULSO NO PLAYER
-		*****************************************************************/
-		//funcao para ser chamada pelos inimigos para dar knockback ou knockup
-		public void Impulso(float x, float y){
-			rigidbody2D.AddForce (new Vector2 (x,y));			
-		}
-		/****************************************************************/		
-		
+	
 		
 		
 		
@@ -265,10 +232,10 @@ public class KitControllerBasico : MonoBehaviour {
 		/*----------------PARA VERIFICAR LIFE--------------*/
 		if (life <= 0){
 			//Debug.Log ("Game over. Life = " + life);
-			//TODO Chamar animaçao da morte
-			CameraFade.StartAlphaFade( Color.black, false, 2f, 0f, () => { Application.LoadLevel(2); } );
-
-
+			anim.SetBool("Morreu",true);
+			rigidbody2D.velocity = Vector3.zero; 
+			rigidbody2D.angularVelocity = 0f; 
+			parado = true;
 		}
 		/*-------------------------------------------------*/
 			//TODO Diminuir ou aumentar a barra de life ou tirar e colocar coraçoes
@@ -279,7 +246,26 @@ public class KitControllerBasico : MonoBehaviour {
 
 
 
+		/*----------CHAMA A TELA DE GAME OVER----------------------*/
+		void TelaGameOver(){
+			CameraFade.StartAlphaFade( Color.black, false, 2f, 0f, () => { Application.LoadLevel(2); } );
+		}
 
+		/*-----------PARA MUDAR O LADO QUE O PERSONAGEM OLHA-------*/
+		void Flip() {
+			olhandoDireita = !olhandoDireita; //inverte o estado da booleana, ja que agora o personagem esta invertido tb
+			Vector3 aEscala = transform.localScale; //pega a scale do componente transform
+			aEscala.x *= -1; //inver a scale
+			transform.localScale = aEscala; //aplica no transform
+		}
+		/*---------------------------------------------------------*/
+
+		/*--RECEBE FORCA NOS EIXOS X E Y E DA UM IMPULSO NO PLAYER-*/
+		//funcao para ser chamada pelos inimigos para dar knockback ou knockup
+		public void Impulso(float x, float y){
+			rigidbody2D.AddForce (new Vector2 (x,y));			
+		}
+		/*---------------------------------------------------------*/		
 
 		/*-----------PARA VARIA A QUANTIDADE DE MOEDAS-------------*/
 		public void variacaoMoedas(int quantidadeMoedas) {
@@ -294,4 +280,13 @@ public class KitControllerBasico : MonoBehaviour {
 				PlayerPrefs.SetInt("level",level);		
 		}
 		/*---------------------------------------------------------*/
+
+		IEnumerator Esperar(float tempo) {
+			
+			yield return new WaitForSeconds(tempo); //espera um determinado tempo
+			anim.SetBool ("apanhou", false); //reseta a animaçao de paanhar para idle
+			parado = false; //retorna o movimento horizontal
+			GetComponent<CircleCollider2D>().enabled = true; //para uso nas plataformas atravessaveis
+			GetComponent<BoxCollider2D>().enabled = true; 
+		}
 }
