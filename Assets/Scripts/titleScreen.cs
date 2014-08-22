@@ -15,6 +15,27 @@ public class titleScreen : MonoBehaviour {
 	//Variavel que vai dizer em qual opcao o mouse esta posicionado (hover)
 	private string hover;
 
+
+	private Resolution recommended;
+	bool fullScreen = true;
+	private string curRes;
+	private Rect botaoRes;
+	private bool fullscreenToggle = true;
+	private Resolution resAtual;
+	private float resolutionPointer = 0f;
+	private float resModificada = 0f;
+	private float janelaOpcoesWidth = 520;
+	private float janelaOpcoesHeight = 520;
+	private Rect janelaOpcoes;
+	private bool opcoesAtivo = false;
+
+
+	void Start() {
+		resAtual = Screen.currentResolution;
+		resolutionPointer = Screen.resolutions.Length-1;
+	}
+
+
 	//Funcao que incrementa ou decrementa o item selecionado de acordo com a direcao (cima ou baixo) apertada pelo teclado
 	int menuSelection (string[] menuItems,int  selectedItem, string direction) {
 		if (direction == "up") {
@@ -74,7 +95,12 @@ public class titleScreen : MonoBehaviour {
 
 		//Cria uma janela, no centro da tela, para os botoes
 		janela = new Rect ((Screen.width-janelaWidth)/2, (Screen.height-janelaHeight)/2, janelaWidth, janelaHeight);
-		janela = GUI.Window (0, janela, WindowFunction, "");
+		janelaOpcoes = new Rect ((Screen.width-janelaOpcoesWidth)/2, (Screen.height-janelaOpcoesHeight)/2, janelaOpcoesWidth, janelaOpcoesHeight);
+
+		if (opcoesAtivo)
+			janelaOpcoes = GUI.Window (0, janelaOpcoes, WindowOpcoesFunction, "");
+		else
+			janela = GUI.Window (0, janela, WindowFunction, "");
 
 		//da o foco para o item selecionado pelo teclado	
 		GUI.FocusControl (menuOptions[selectedIndex]);
@@ -98,7 +124,7 @@ public class titleScreen : MonoBehaviour {
 		GUI.SetNextControlName ("Opções");
 		opcoes = new Rect ((janelaWidth-300)/2, 350, 300, 40);
 		if (GUI.Button (opcoes, new GUIContent ("Opções", "Opcoes GUIContent"))) {
-			//TODO Chamar as opcoes
+			opcoesAtivo = true;
 		}
 
 		//Cria o botao Sair 
@@ -112,4 +138,33 @@ public class titleScreen : MonoBehaviour {
 		hover = GUI.tooltip;
 	}
 
+	void WindowOpcoesFunction (int windowID) {
+		fullScreen = GUI.Toggle(new Rect(205, 300, 300, 40), fullScreen, " Fullscreen");
+		if (fullScreen != fullscreenToggle) {
+			fullscreenToggle = fullScreen;
+		}
+		GUI.Label(new Rect(110, 250, 110, 40),"Resolução: ");
+		resolutionPointer=GUI.HorizontalSlider(new Rect(220, 258, 200, 40),resolutionPointer,0,Screen.resolutions.Length-1);
+		
+		if (resolutionPointer != resModificada) {
+			resModificada = resolutionPointer;
+		}
+
+		//GUI.HorizontalSlider(new Rect(220, 258, 200, 40),1,0,16);
+
+		GUI.Label(new Rect(423, 250, 220, 40),Screen.resolutions[(int)resModificada].width+"x"+Screen.resolutions[(int)resModificada].height);
+		
+		if(GUI.Button(new Rect((janelaOpcoesWidth-300)/2, 350, 300, 40),"Aplicar")) {
+			Screen.SetResolution(Screen.resolutions[(int)resolutionPointer].width,Screen.resolutions[(int)resolutionPointer].height,fullScreen);
+			resAtual.width = Screen.resolutions[(int)resolutionPointer].width;
+			resAtual.height = Screen.resolutions[(int)resolutionPointer].height;
+		}
+		
+		curRes = resAtual.width+"x"+resAtual.height;
+		//GUILayout.Label("Resoluçao atual: "+curRes);
+
+		sair = new Rect ((janelaOpcoesWidth-300)/2, 400, 300, 40);
+		if(GUI.Button(sair,"Voltar"))
+			opcoesAtivo = false;
+	}
 }

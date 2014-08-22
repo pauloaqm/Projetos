@@ -1,46 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class opcoes : MonoBehaviour {
-		
-	private Resolution[] resolutions;
+public class opcoes : MonoBehaviour {		
+
 	private Resolution recommended;
 	bool fullScreen = true;
-	private int posRes = 0;
-	private int totalRes = 0;
 	private string curRes;
+	private Rect botaoRes;
+	private bool fullscreenToggle = true;
+	private Resolution resAtual;
+	private float resolutionPointer = 0f;
+	private float resModificada = 0f;
+	private float janelaOpcoesWidth = 520;
+	private float janelaOpcoesHeight = 520;
+	private Rect janelaOpcoes;
 	
 	void Start() {
-		
-		// get all the resolutions that the machine can run
-		resolutions = Screen.resolutions;
-		totalRes = resolutions.Length;
-		// get the desktop resolution and set as the resolution of the game in full screen mode (note that this will only work if the player start in the windowed mode)
-		recommended = Screen.currentResolution;
-		
-		// Switch to the desktop screen resolution in fullscreen mode and adjusts the display info
-		Screen.SetResolution (recommended.width, recommended.height, fullScreen);
-		curRes = Screen.currentResolution.width+"x"+Screen.currentResolution.height;
-		
+		resAtual = Screen.currentResolution;
 	}
-	
+
 	void OnGUI() {
+
+		janelaOpcoes = new Rect ((Screen.width-janelaOpcoesWidth)/2, (Screen.height-janelaOpcoesHeight)/2, janelaOpcoesWidth, janelaOpcoesHeight);
+		janelaOpcoes = GUI.Window (0, janelaOpcoes, WindowOpcoesFunction, "");
+
+
+	}
+
+	void WindowOpcoesFunction (int windowID) {
+		fullScreen = GUILayout.Toggle(fullScreen, " Fullscreen");
+		if (fullScreen != fullscreenToggle) {
+			fullscreenToggle = fullScreen;
+		}
+		resolutionPointer=GUI.HorizontalSlider(new Rect(100, 150, 100, 30),resolutionPointer,0,Screen.resolutions.Length-1);
 		
-		GUILayout.Label("Actual Resolution: "+curRes);
-		fullScreen = GUILayout.Toggle(fullScreen, " use fullscreen");
-		if(GUILayout.Button("Change Resolution"))
-		{
-			if(posRes < totalRes)
-				posRes++;
-			else
-				posRes = 0;
-			
-			Screen.SetResolution(resolutions[posRes].width, resolutions[posRes].height, fullScreen);
-			curRes = resolutions[posRes].width+"x"+resolutions[posRes].height;
+		if (resolutionPointer != resModificada) {
+			resModificada = resolutionPointer;
 		}
 		
-		if(GUILayout.Button("Exit"))
-			Application.Quit();
+		GUI.Label(new Rect(100, 250, 100, 30),Screen.resolutions[(int)resModificada].width+"x"+Screen.resolutions[(int)resModificada].height);
 		
+		if(GUI.Button(new Rect(100, 350, 100, 30),"Aplicar")) {
+			Screen.SetResolution(Screen.resolutions[(int)resolutionPointer].width,Screen.resolutions[(int)resolutionPointer].height,fullScreen);
+			resAtual.width = Screen.resolutions[(int)resolutionPointer].width;
+			resAtual.height = Screen.resolutions[(int)resolutionPointer].height;
+		}
+		
+		curRes = resAtual.width+"x"+resAtual.height;
+		GUILayout.Label("Resoluçao atual: "+curRes);
+		
+		if(GUILayout.Button("Voltar"))
+			Application.Quit();
 	}
 }
