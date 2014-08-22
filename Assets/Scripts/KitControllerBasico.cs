@@ -6,7 +6,7 @@ public class KitControllerBasico : MonoBehaviour {
 	 * 						DECLARACOES INICIAIS
 	 * *************************************************************/
 	//para pegar moedas
-	public static int moedas = 0;
+	public int moedas = 0;
 
 	//para SFX
 	public AudioClip somPulo;
@@ -43,7 +43,7 @@ public class KitControllerBasico : MonoBehaviour {
 	bool naPlataforma = false;
 
 	//para o life do player
-	public static float life = 100f;
+	public float life = 100f;
 
 	//PARA WALL JUMP
 	bool tocandoParede = false;
@@ -263,7 +263,7 @@ public class KitControllerBasico : MonoBehaviour {
 
 		/*-----------PARA VARIA A QUANTIDADE DE MOEDAS-------------*/
 		public void variacaoMoedas(int quantidadeMoedas) {
-			KitControllerBasico.moedas += quantidadeMoedas;
+			moedas += quantidadeMoedas;
 			Debug.Log(moedas);
 		}
 		/*---------------------------------------------------------*/
@@ -292,8 +292,8 @@ public class KitControllerBasico : MonoBehaviour {
 				GetComponent<BoxCollider2D>().enabled = false;
 				GetComponent<CircleCollider2D>().enabled = false;
 				rigidbody2D.AddForce (new Vector2 (0, 300f));
-				Camera.main.GetComponent<cameraFollow>().maxXAndY = new Vector2(transform.position.x, transform.position.y);
-				Camera.main.GetComponent<cameraFollow>().minXAndY = new Vector2(transform.position.x, transform.position.y);
+				Camera.main.GetComponent<cameraPixelGap>().maxXAndY = new Vector2(transform.position.x, transform.position.y);
+				Camera.main.GetComponent<cameraPixelGap>().minXAndY = new Vector2(transform.position.x, transform.position.y);
 				Invoke("TelaGameOver",3f);
 				transform.position = new Vector3 (transform.position.x, transform.position.y, -20);
 			//TODO adicionar som ao morrer
