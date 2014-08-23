@@ -6,7 +6,7 @@ public class titleScreen : MonoBehaviour {
 	public GUISkin titleScreenGUI;
 	private float janelaWidth = 250;
 	private float janelaHeight = 180;
-	private Rect janela, novoJogo, sair, opcoes;
+	private Rect janela, novoJogo, sair, opcoes, aplicar;
 	
 	//Declaraçao do array que contem as opcoes do menu, do indice que acompanha qual opcao esta selecionada
 	private string[] menuOptions = new string[3] {"Novo Jogo","Opções","Sair"};
@@ -88,6 +88,18 @@ public class titleScreen : MonoBehaviour {
 			selectedIndex = 2;
 			GUI.FocusControl (menuOptions[selectedIndex]);
 		}
+
+		//Da o foco para o item Sair se o mouse estiver em cima do botao
+		if(hover=="Aplicar GUIContent"){
+			selectedIndex = 0;
+			GUI.FocusControl (menuOptions[selectedIndex]);
+		}
+
+		//Da o foco para o item Sair se o mouse estiver em cima do botao
+		if(hover=="Voltar GUIContent"){
+			selectedIndex = 1;
+			GUI.FocusControl (menuOptions[selectedIndex]);
+		}
 	}
 	
 	void OnGUI () {
@@ -125,6 +137,7 @@ public class titleScreen : MonoBehaviour {
 		opcoes = new Rect ((janelaWidth-300)/2, 70, 300, 40);
 		if (GUI.Button (opcoes, new GUIContent ("Opções", "Opcoes GUIContent"))) {
 			opcoesAtivo = true;
+			menuOptions = new string[2] {"Aplicar","Voltar"};
 		}
 		
 		//Cria o botao Sair 
@@ -153,8 +166,11 @@ public class titleScreen : MonoBehaviour {
 		//GUI.HorizontalSlider(new Rect(220, 258, 200, 40),1,0,16);
 		
 		GUI.Label(new Rect(390, 20, 220, 40),Screen.resolutions[(int)resModificada].width+"x"+Screen.resolutions[(int)resModificada].height);
-		
-		if(GUI.Button(new Rect((janelaOpcoesWidth-300)/2, 120, 300, 40),"Aplicar")) {
+
+
+		GUI.SetNextControlName ("Aplicar");
+		aplicar = new Rect ((janelaOpcoesWidth - 300) / 2, 120, 300, 40);
+		if(GUI.Button(aplicar, new GUIContent ("Aplicar", "Aplicar GUIContent"))) {
 			Screen.SetResolution(Screen.resolutions[(int)resolutionPointer].width,Screen.resolutions[(int)resolutionPointer].height,fullScreen);
 			resAtual.width = Screen.resolutions[(int)resolutionPointer].width;
 			resAtual.height = Screen.resolutions[(int)resolutionPointer].height;
@@ -162,9 +178,12 @@ public class titleScreen : MonoBehaviour {
 		
 		curRes = resAtual.width+"x"+resAtual.height;
 		//GUILayout.Label("Resoluçao atual: "+curRes);
-		
+
+		GUI.SetNextControlName ("Voltar");
 		sair = new Rect ((janelaOpcoesWidth-300)/2, 170, 300, 40);
-		if(GUI.Button(sair,"Voltar"))
+		if (GUI.Button (sair, new GUIContent ("Voltar", "Voltar GUIContent"))) {
 			opcoesAtivo = false;
+			menuOptions = new string[3] {"Novo Jogo","Opções","Sair"};
+		}
 	}
 }
