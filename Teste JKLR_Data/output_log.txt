@@ -10,7 +10,7 @@ Platform assembly: D:\Unity3d\Projetos\Jump Kill Loot [Repeat]\Teste JKLR_Data\M
 Loading D:\Unity3d\Projetos\Jump Kill Loot [Repeat]\Teste JKLR_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: D:\Unity3d\Projetos\Jump Kill Loot [Repeat]\Teste JKLR_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading D:\Unity3d\Projetos\Jump Kill Loot [Repeat]\Teste JKLR_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.104 seconds
+- Completed reload, in  0.095 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -28,9 +28,107 @@ The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1783)
 
-UnloadTime: 0.287057 ms
+UnloadTime: 0.322584 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 2490.
-Total: 1.142191 ms (FindLiveObjects: 0.074961 ms CreateObjectMapping: 0.023447 ms MarkObjects: 0.262899 ms  DeleteObjects: 0.013855 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 2671.
+Total: 1.125138 ms (FindLiveObjects: 0.085264 ms CreateObjectMapping: 0.048316 ms MarkObjects: 0.273912 ms  DeleteObjects: 0.013144 ms)
+
+apanhou
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+esperar
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+apanhou
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+apanhou
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+esperar
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 2.664876 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 217 unused Assets to reduce memory usage. Loaded Objects now: 124.
+Total: 1.609015 ms (FindLiveObjects: 0.008171 ms CreateObjectMapping: 0.014210 ms MarkObjects: 0.172305 ms  DeleteObjects: 0.766316 ms)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1783)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1783)
+
+UnloadTime: 0.219911 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 2672.
+Total: 1.145743 ms (FindLiveObjects: 0.096633 ms CreateObjectMapping: 0.030553 ms MarkObjects: 0.312281 ms  DeleteObjects: 0.015276 ms)
+
+1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+3
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+4
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+5
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+apanhou
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+esperar
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+apanhou
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+6
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+7
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+apanhou
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+esperar
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+apanhou
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 2.493991 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 217 unused Assets to reduce memory usage. Loaded Objects now: 124.
+Total: 1.627844 ms (FindLiveObjects: 0.008526 ms CreateObjectMapping: 0.019184 ms MarkObjects: 0.171239 ms  DeleteObjects: 0.765250 ms)
 
