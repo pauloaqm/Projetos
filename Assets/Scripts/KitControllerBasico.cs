@@ -29,7 +29,7 @@ public class KitControllerBasico : MonoBehaviour {
 	//para checar o chao pro pulo
 	public Transform checaChao;
 	bool noChao = false;
-	float chaoRaio = 0.2f;
+	float chaoRaio = 0.25f;
 	public LayerMask ehChao;
 
 	//para o pulo
@@ -111,7 +111,7 @@ public class KitControllerBasico : MonoBehaviour {
 		}*/
 
 		//PARA WALL JUMP
-		if (tocandoParede && (noChao == false) && (naPlataforma == false) && Input.GetButtonDown ("Jump") && parado == false) //noChao tem que ser falso para evitar dois pulos acumulados
+		if (tocandoParede && noChao == false && (naPlataforma == false) && Input.GetButtonDown ("Jump") && parado == false) //noChao tem que ser falso para evitar dois pulos acumulados
 		{																		//quando o personagem estiver tocando em parede e chao ao mesmo tempo
 			//pega o valor arredondado para inteiro do eixo horizontal
 			float hori = Mathf.Floor(-Input.GetAxis("Horizontal"));
@@ -200,7 +200,7 @@ public class KitControllerBasico : MonoBehaviour {
 		anim.SetBool ("naPlataforma", naPlataforma);
 		//para descer de uma plataforma
 		if(Input.GetAxis("Vertical") <= -0.5 && Input.GetButton("Jump") && naPlataforma && parado == false){
-			GetComponent<CircleCollider2D>().enabled = false;
+			//GetComponent<CircleCollider2D>().enabled = false;
 			GetComponent<BoxCollider2D>().enabled = false; 
 			//rigidbody2D.AddForce (new Vector2(0,-20f));
 			StartCoroutine(Esperar(0.2f)); //precisa esperar para que o personagem passe por dentro da plataforma por completo
@@ -281,7 +281,7 @@ public class KitControllerBasico : MonoBehaviour {
 			anim.SetBool ("apanhou", false); //reseta a animaçao de paanhar para idle
 			if(life>0){
 				parado = false; //retorna o movimento horizontal
-				GetComponent<CircleCollider2D>().enabled = true; //para uso nas plataformas atravessaveis
+				//GetComponent<CircleCollider2D>().enabled = true; //para uso nas plataformas atravessaveis
 				GetComponent<BoxCollider2D>().enabled = true;
 			}
 			else{
@@ -290,7 +290,7 @@ public class KitControllerBasico : MonoBehaviour {
 				rigidbody2D.angularVelocity = 0f; 
 				parado = true;
 				GetComponent<BoxCollider2D>().enabled = false;
-				GetComponent<CircleCollider2D>().enabled = false;
+				//GetComponent<CircleCollider2D>().enabled = false;
 				rigidbody2D.AddForce (new Vector2 (0, 300f));
 				Camera.main.GetComponent<cameraPixelGap>().maxXAndY = new Vector2(transform.position.x, transform.position.y);
 				Camera.main.GetComponent<cameraPixelGap>().minXAndY = new Vector2(transform.position.x, transform.position.y);
