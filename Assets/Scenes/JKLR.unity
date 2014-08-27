@@ -38377,7 +38377,6 @@ GameObject:
   - 114: {fileID: 1979760119}
   - 114: {fileID: 1979760120}
   - 95: {fileID: 1979760121}
-  - 58: {fileID: 1979760122}
   - 61: {fileID: 1979760118}
   - 82: {fileID: 1979760123}
   - 114: {fileID: 1979760124}
@@ -38461,8 +38460,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .629999995, y: .790000021}
-  m_Center: {x: .109999999, y: .150000006}
+  m_Size: {x: .534352124, y: 1.35000002}
+  m_Center: {x: .106321812, y: -.0800000429}
 --- !u!114 &1979760119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38516,17 +38515,6 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
---- !u!58 &1979760122
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1979760113}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Radius: .360000014
-  m_Center: {x: .0900000036, y: -.389999986}
 --- !u!82 &1979760123
 AudioSource:
   m_ObjectHideFlags: 0
