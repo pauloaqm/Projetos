@@ -38646,6 +38646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5835e494726f36a4688179928fce4048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleScreenGUI: {fileID: 11400000, guid: e45e9f61452894d4488814ba0130404e, type: 2}
 --- !u!81 &1979760125
 AudioListener:
   m_ObjectHideFlags: 0
